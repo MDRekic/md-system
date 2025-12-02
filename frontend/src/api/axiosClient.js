@@ -1,15 +1,11 @@
 import axios from "axios";
 
-const axiosClient = axios.create({
-  baseURL: "http://localhost:4000/api",
-});
+// u produkciji će sve ići preko Nginx-a na /api
+const API_URL = import.meta.env.VITE_API_URL || "/api";
 
-axiosClient.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
+const axiosClient = axios.create({
+  baseURL: API_URL,
+  withCredentials: true,
 });
 
 export default axiosClient;
