@@ -81,6 +81,9 @@ const JobCalendar = () => {
         dayHeaderContent={formatGermanHeader}
         // set locale used by FullCalendar where applicable
         locale="de"
+        // explicitly set header and button text so 'today' shows in German
+        headerToolbar={{ left: 'prev,next today', center: 'title', right: 'timeGridWeek,timeGridDay' }}
+        buttonText={{ today: 'Heute', month: 'Monat', week: 'Woche', day: 'Tag', list: 'Liste' }}
         height="auto"
       />
 
