@@ -18,3 +18,27 @@
 .fc .fc-event-main-frame {
   font-size: 13px !important;
 }
+
+/* draw clear borders between each cell */
+.fc .fc-timegrid .fc-timegrid-slots td {
+  border-right: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
+  box-sizing: border-box;
+}
+
+/* highlight only the hovered cell (not the whole row/column) */
+.fc .fc-timegrid .fc-timegrid-slots td:hover {
+  background-color: rgba(122,166,217,0.08) !important;
+}
+
+/* override any full-column/row highlight that FullCalendar may add */
+.fc .fc-timegrid .fc-highlight,
+.fc .fc-timegrid .fc-timegrid-slots .fc-bg-cell,
+.fc .fc-timegrid .fc-scrollgrid-section .fc-bg {
+  background: transparent !important;
+}
+
+/* ensure events still show above hover */
+.fc .fc-event {
+  z-index: 3;
+}
