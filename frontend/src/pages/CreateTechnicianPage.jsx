@@ -13,6 +13,7 @@ const CreateTechnicianPage = () => {
     password: "",
     company_id: "",
     job_role: "TIEFBAU",
+    role: "USER",
   });
   const [message, setMessage] = useState("");
 
@@ -47,6 +48,7 @@ const CreateTechnicianPage = () => {
         password: "",
         company_id: "",
         job_role: "TIEFBAU",
+        role: "USER",
       });
     } catch (err) {
       console.error(err);
@@ -121,7 +123,13 @@ const CreateTechnicianPage = () => {
   <option value="TIEFBAU_EINBLAESER">Tiefbau + Einbläser</option>
 </select>
 
-        <button type="submit">Snimi tehničara</button>
+  <label>Uloga:</label>
+  <select name="role" value={form.role} onChange={handleChange} required>
+    <option value="USER">User</option>
+    <option value="ADMIN">Admin</option>
+  </select>
+
+  <button type="submit">Snimi tehničara</button>
       </form>
 
       {message && <p style={{ marginTop: 10 }}>{message}</p>}

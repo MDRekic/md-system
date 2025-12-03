@@ -49,10 +49,16 @@ router.post(
         password,
         company_id,
         job_role, // 'TIEFBAU' ili 'EINBLAESER'
+        role, // 'ADMIN' ili 'USER'
       } = req.body;
 
-      if (!name || !email || !password || !company_id || !job_role) {
+      if (!name || !email || !password || !company_id || !job_role || !role) {
         return fail(res, 400, "Nedostaju obavezna polja");
+      }
+
+      const allowedRoles = ["ADMIN", "USER"];
+      if (!allowedRoles.includes(role)) {
+        return fail(res, 400, "Neispravna uloga");
       }
 
       // provjera da email ne postoji
@@ -70,9 +76,9 @@ router.post(
         `
         INSERT INTO users
         (name, email, phone, password_hash, role, company_id, job_role)
-        VALUES (?, ?, ?, ?, 'USER', ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
       `,
-        [name, email, phone || null, hash, company_id, job_role]
+        [name, email, phone || null, hash, role, company_id, job_role]
       );
 
       ok(res, null, "Tehničar kreiran");
