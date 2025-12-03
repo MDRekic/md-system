@@ -12,6 +12,23 @@ const JobCalendar = () => {
   const [events, setEvents] = useState([]);
   const [selectedJob, setSelectedJob] = useState(null);
 
+  // Formatter for column/day headers to German short weekday and numeric date
+  const formatGermanHeader = (arg) => {
+    const date = arg.date || arg;
+    const parts = new Intl.DateTimeFormat("de", {
+      weekday: "short",
+      day: "numeric",
+      month: "numeric",
+    }).formatToParts(date instanceof Date ? date : new Date(date));
+
+    const weekday = (parts.find((p) => p.type === "weekday")?.value || "").replace(/\./g, "");
+    const day = parts.find((p) => p.type === "day")?.value || "";
+    const month = parts.find((p) => p.type === "month")?.value || "";
+
+    // Return plain text (FullCalendar accepts string or DOM nodes)
+    return `${weekday} ${day}.${month}`;
+  };
+
   const loadJobs = async (start, end) => {
     const res = await jobApi.getJobs({
       from: start.toISOString(),
@@ -59,6 +76,11 @@ const JobCalendar = () => {
           const job = info.event.extendedProps.job;
           setSelectedJob(job);
         }}
+        // customize column/day headers to German short weekdays and numeric dates
+        columnHeaderContent={formatGermanHeader}
+        dayHeaderContent={formatGermanHeader}
+        // set locale used by FullCalendar where applicable
+        locale="de"
         height="auto"
       />
 

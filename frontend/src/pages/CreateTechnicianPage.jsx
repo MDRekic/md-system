@@ -60,7 +60,7 @@ const CreateTechnicianPage = () => {
 
   return (
     <div style={{ padding: 20 }}>
-      <h1>Novi tehničarrrrrrrrrrr</h1>
+      <h1>Novi tehničar</h1>
 
       <form
         onSubmit={handleSubmit}
@@ -111,7 +111,7 @@ const CreateTechnicianPage = () => {
           ))}
         </select>
 
-        <label>Tip tehničara1:</label>
+        <label>Tip tehničara:</label>
        <select
   name="job_role"
   value={form.job_role}
