@@ -101,3 +101,22 @@
   position: relative;
   z-index: 2;
 }
+
+/* If FullCalendar applies hover/highlight to the container (causing all TDs to color),
+   neutralize that and only allow the single td:hover to show the color. */
+.fc .fc-timegrid .fc-timegrid-slots:hover td,
+.fc .fc-timegrid .fc-scrollgrid .fc-scroller:hover .fc-timegrid-slots td,
+.fc .fc-timegrid .fc-scrollgrid-section:hover .fc-timegrid-slots td {
+  background: transparent !important;
+}
+
+/* Target lane cells specifically: only the hovered lane cell should get background */
+.fc .fc-timegrid-slot-lane:hover {
+  background-color: rgba(122,166,217,0.12) !important;
+}
+
+/* Some versions add a hovered class to the container; ensure that class doesn't color all cells */
+.fc .fc-timegrid .fc-timegrid-slots.fc-hover td,
+.fc .fc-timegrid .fc-timegrid-slots .fc-bg.fc-highlight {
+  background: transparent !important;
+}
