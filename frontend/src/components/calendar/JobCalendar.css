@@ -1,0 +1,27 @@
+.fc .fc-timegrid-slot {
+  min-height: 72px !important;
+  height: 72px !important;
+}
+
+/* slot labels inside cells (centered small blue text) */
+.fc .fc-timegrid-slot-label {
+  font-size: 12px !important;
+  color: #7aa6d9 !important;
+  opacity: 0.95;
+}
+
+/* left-side slot labels (optional styling) */
+.fc .fc-timegrid-axis-cushion {
+  font-size: 12px !important;
+  color: #7aa6d9 !important;
+}
+
+/* make calendar cells look more square by increasing row height and reducing gap */
+.fc .fc-timegrid .fc-timegrid-slots td {
+  padding: 0 !important;
+}
+
+/* slightly reduce event font so they fit nicer */
+.fc .fc-event-main-frame {
+  font-size: 13px !important;
+}

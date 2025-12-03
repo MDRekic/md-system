@@ -1,6 +1,8 @@
 // frontend/src/components/calendar/JobCalendar.jsx
 
 import { useState } from "react";
+import deLocale from "@fullcalendar/core/locales/de";
+import "./JobCalendar.css";
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
@@ -91,6 +93,7 @@ const JobCalendar = () => {
         dayHeaderContent={formatGermanHeader}
         // set locale used by FullCalendar where applicable
         locale="de"
+        locales={[deLocale]}
         // explicitly set header and button text so 'today' shows in German
         headerToolbar={{ left: 'prev,next today', center: 'title', right: 'timeGridWeek,timeGridDay' }}
         buttonText={{ today: 'Heute', month: 'Monat', week: 'Woche', day: 'Tag', list: 'Liste' }}
