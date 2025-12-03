@@ -40,6 +40,9 @@ const JobCalendar = () => {
     });
 
     const jobs = res.data.data || [];
+    console.log("🔍 JobCalendar loadJobs - start:", start, "end:", end);
+    console.log("🔍 API Response:", res.data);
+    console.log("🔍 Jobs fetched:", jobs);
 
     const mapped = jobs.map((job) => {
       // boja po statusu
@@ -67,6 +70,7 @@ const JobCalendar = () => {
     });
 
     setEvents(mapped);
+    console.log("🔍 Events mapped:", mapped);
   };
 
   return (
