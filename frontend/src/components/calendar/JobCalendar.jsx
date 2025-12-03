@@ -31,15 +31,7 @@ const JobCalendar = () => {
     return `${weekday} ${day}.${month}`;
   };
 
-  // Formatter for slot labels (hours) to show e.g. "00 Uhr", "01 Uhr" etc.
-  const formatGermanSlotLabel = (arg) => {
-    const date = arg.date || arg;
-    const hour = new Intl.DateTimeFormat("de", {
-      hour: "2-digit",
-      hour12: false,
-    }).format(date instanceof Date ? date : new Date(date));
-    return `${hour} Uhr`;
-  };
+  // (removed custom slot content to avoid duplicate labels)
 
   const loadJobs = async (start, end) => {
     const res = await jobApi.getJobs({
@@ -100,7 +92,8 @@ const JobCalendar = () => {
         // show one hour per slot to make calendar cells uniform
         slotDuration="01:00:00"
         slotLabelInterval="01:00"
-        slotLabelContent={formatGermanSlotLabel}
+        // use FullCalendar formatting for labels to show HH:mm (e.g. 00:00)
+        slotLabelFormat={{ hour: '2-digit', minute: '2-digit', hour12: false }}
         // show full day range (adjust if you want to limit displayed hours)
         slotMinTime="00:00:00"
         slotMaxTime="24:00:00"

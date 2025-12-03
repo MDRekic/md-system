@@ -3,14 +3,7 @@
   height: 72px !important;
 }
 
-/* slot labels inside cells (centered small blue text) */
-.fc .fc-timegrid-slot-label {
-  font-size: 12px !important;
-  color: #7aa6d9 !important;
-  opacity: 0.95;
-}
-
-/* left-side slot labels (optional styling) */
+/* style left-side slot labels (HH:mm) */
 .fc .fc-timegrid-axis-cushion {
   font-size: 12px !important;
   color: #7aa6d9 !important;
