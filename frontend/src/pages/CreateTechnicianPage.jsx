@@ -111,7 +111,7 @@ const CreateTechnicianPage = () => {
           ))}
         </select>
 
-        <label>Tip tehničara:</label>
+        <label>Tip tehničara1:</label>
        <select
   name="job_role"
   value={form.job_role}
