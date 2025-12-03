@@ -25,7 +25,7 @@ const LoginPage = () => {
 
   return (
     <div className="login-page">
-      <h1>COMP4 Login</h1>
+      <h1>STORN Login</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="email"
