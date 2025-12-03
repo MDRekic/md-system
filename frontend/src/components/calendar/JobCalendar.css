@@ -28,7 +28,7 @@
 
 /* highlight only the hovered cell (not the whole row/column) */
 .fc .fc-timegrid .fc-timegrid-slots td:hover {
-  background-color: rgba(122,166,217,0.08) !important;
+  background-color: rgba(122,166,217,0.12) !important;
 }
 
 /* override any full-column/row highlight that FullCalendar may add */
@@ -41,4 +41,22 @@
 /* ensure events still show above hover */
 .fc .fc-event {
   z-index: 3;
+}
+
+/* Prevent the table row hover from coloring all cells: force row backgrounds transparent */
+.fc .fc-timegrid .fc-timegrid-slots tr:hover td {
+  background: transparent !important;
+}
+
+/* Clear any bg overlays used by FullCalendar's skeleton layers */
+.fc .fc-timegrid .fc-timegrid-slots .fc-bg .fc-highlight,
+.fc .fc-timegrid .fc-timegrid-slots .fc-bg td,
+.fc .fc-timegrid .fc-scrollgrid .fc-bg td {
+  background: transparent !important;
+}
+
+/* Ensure hovered td stays on top visually */
+.fc .fc-timegrid .fc-timegrid-slots td:hover {
+  position: relative;
+  z-index: 2;
 }
