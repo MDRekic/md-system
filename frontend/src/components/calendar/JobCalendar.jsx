@@ -1,8 +1,6 @@
 // frontend/src/components/calendar/JobCalendar.jsx
 
 import { useState } from "react";
-import deLocale from "@fullcalendar/core/locales/de";
-import "./JobCalendar.css";
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
@@ -14,25 +12,6 @@ const JobCalendar = () => {
   const [events, setEvents] = useState([]);
   const [selectedJob, setSelectedJob] = useState(null);
 
-  // Formatter for column/day headers to German short weekday and numeric date
-  const formatGermanHeader = (arg) => {
-    const date = arg.date || arg;
-    const parts = new Intl.DateTimeFormat("de", {
-      weekday: "short",
-      day: "numeric",
-      month: "numeric",
-    }).formatToParts(date instanceof Date ? date : new Date(date));
-
-    const weekday = (parts.find((p) => p.type === "weekday")?.value || "").replace(/\./g, "");
-    const day = parts.find((p) => p.type === "day")?.value || "";
-    const month = parts.find((p) => p.type === "month")?.value || "";
-
-    // Return plain text (FullCalendar accepts string or DOM nodes)
-    return `${weekday} ${day}.${month}`;
-  };
-
-  // (removed custom slot content to avoid duplicate labels)
-
   const loadJobs = async (start, end) => {
     const res = await jobApi.getJobs({
       from: start.toISOString(),
@@ -40,9 +19,6 @@ const JobCalendar = () => {
     });
 
     const jobs = res.data.data || [];
-    console.log("🔍 JobCalendar loadJobs - start:", start, "end:", end);
-    console.log("🔍 API Response:", res.data);
-    console.log("🔍 Jobs fetched:", jobs);
 
     const mapped = jobs.map((job) => {
       // boja po statusu
@@ -70,7 +46,6 @@ const JobCalendar = () => {
     });
 
     setEvents(mapped);
-    console.log("🔍 Events mapped:", mapped);
   };
 
   return (
@@ -84,23 +59,6 @@ const JobCalendar = () => {
           const job = info.event.extendedProps.job;
           setSelectedJob(job);
         }}
-        // customize column/day headers to German short weekdays and numeric dates
-        columnHeaderContent={formatGermanHeader}
-        dayHeaderContent={formatGermanHeader}
-        // set locale used by FullCalendar where applicable
-        locale="de"
-        locales={[deLocale]}
-        // explicitly set header and button text so 'today' shows in German
-        headerToolbar={{ left: 'prev,next today', center: 'title', right: 'timeGridWeek,timeGridDay' }}
-        buttonText={{ today: 'Heute', month: 'Monat', week: 'Woche', day: 'Tag', list: 'Liste' }}
-        // show one hour per slot to make calendar cells uniform
-        slotDuration="01:00:00"
-        slotLabelInterval="01:00"
-        // use FullCalendar formatting for labels to show HH:mm (e.g. 00:00)
-        slotLabelFormat={{ hour: '2-digit', minute: '2-digit', hour12: false }}
-        // show full day range (adjust if you want to limit displayed hours)
-        slotMinTime="00:00:00"
-        slotMaxTime="24:00:00"
         height="auto"
       />
 
