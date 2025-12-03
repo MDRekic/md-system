@@ -60,7 +60,7 @@ const CreateTechnicianPage = () => {
 
   return (
     <div style={{ padding: 20 }}>
-      <h1>Novi tehničar</h1>
+      <h1>Novi tehničarrrrrrrrrrr</h1>
 
       <form
         onSubmit={handleSubmit}
