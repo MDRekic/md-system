@@ -75,6 +75,25 @@
   background: transparent !important;
 }
 
+/* Target any element under the calendar that has an inline background style
+   (common for overlay/highlight elements). This hides those overlays while
+   keeping normal cells and events visible. Be restrictive to elements inside
+   .fc to avoid global side-effects. */
+.fc [style*="background"] {
+  /* Only affect overlay-like elements: if it's a plain cell with inline style
+     (rare), this will hide its background — but events/frames are still visible */
+  background: transparent !important;
+  display: none !important;
+  pointer-events: none !important;
+}
+
+/* Fallback targeting rgba overlays specifically (common inline style format) */
+.fc [style*="rgba("] {
+  background: transparent !important;
+  display: none !important;
+  pointer-events: none !important;
+}
+
 /* More aggressive removal of any FullCalendar highlight/overlay that may
    cover multiple cells or the whole grid. This ensures only the td:hover
    rule controls the highlight color. */
