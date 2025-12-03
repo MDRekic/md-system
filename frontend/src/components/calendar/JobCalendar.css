@@ -38,6 +38,26 @@
   background: transparent !important;
 }
 
+/* More aggressive: clear any overlay/backgrounds from header/body grid cells
+   and ensure visible vertical separators between day columns */
+.fc .fc-timegrid .fc-scrollgrid-section .fc-scrollgrid tr td,
+.fc .fc-timegrid .fc-timegrid-slots td,
+.fc .fc-timegrid .fc-scrollgrid .fc-col-header-cell {
+  background: transparent !important;
+  border-left: 1px solid #e6e6e6 !important;
+}
+
+/* Ensure header cells have vertical separators too */
+.fc .fc-col-header-cell {
+  border-right: 1px solid #e6e6e6 !important;
+}
+
+/* Remove any hover styling applied at row level (make transparent) */
+.fc .fc-timegrid .fc-timegrid-slots tr,
+.fc .fc-timegrid .fc-scrollgrid-section .fc-scrollgrid tr {
+  background: transparent !important;
+}
+
 /* ensure events still show above hover */
 .fc .fc-event {
   z-index: 3;
