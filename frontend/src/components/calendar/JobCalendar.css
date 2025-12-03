@@ -75,6 +75,27 @@
   background: transparent !important;
 }
 
+/* More aggressive removal of any FullCalendar highlight/overlay that may
+   cover multiple cells or the whole grid. This ensures only the td:hover
+   rule controls the highlight color. */
+.fc .fc-highlight,
+.fc .fc-bg,
+.fc .fc-scrollgrid .fc-highlight,
+.fc .fc-scrollgrid-section .fc-highlight,
+.fc .fc-timegrid .fc-scrollgrid-section .fc-bg,
+.fc .fc-timegrid .fc-scrollgrid-section .fc-overlay {
+  background: transparent !important;
+  display: none !important;
+  pointer-events: none !important;
+}
+
+/* Some FullCalendar versions add inline styles to block-level overlays; target typical overlay wrappers */
+.fc .fc-scrollgrid .fc-col-header-cell-cushion,
+.fc .fc-scrollgrid .fc-scroller .fc-bg,
+.fc .fc-timegrid .fc-slats .fc-bg {
+  background: transparent !important;
+}
+
 /* Ensure hovered td stays on top visually */
 .fc .fc-timegrid .fc-timegrid-slots td:hover {
   position: relative;
